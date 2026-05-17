@@ -35,6 +35,15 @@ public class UserTasksController {
         return "usertasks";
     }
 
+    @GetMapping("/report")
+    public String showTasksReport(Model model,
+                                  @ModelAttribute("user") User user) {
+
+        model.addAttribute("tasks", user.getTasks());
+
+        return "tasks-report";
+    }
+
     @PostMapping
     public String addTask(@Valid @ModelAttribute(name = "newTask") Task newTask,
                           Errors errors,
